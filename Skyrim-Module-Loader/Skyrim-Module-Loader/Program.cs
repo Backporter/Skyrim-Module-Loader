@@ -116,6 +116,7 @@ namespace Skyrim_Module_Loader
             Console.WriteLine("6: 7.02");
             Console.WriteLine("7: 7.55");
             Console.WriteLine("8: 9.00");
+            Console.WriteLine("9: 11.00");
 
             // 1.00 -> 1.19, after 1.19 the function used for the patch got removed, therefore we need to use a different function.
             if (targetVersion <= 19)
@@ -150,8 +151,9 @@ namespace Skyrim_Module_Loader
                     // 7.55
                     case 7:
                         return 0xC00;
-                    // 9.00
+                    // 9.00/11.00
                     case 8:
+                    case 9:
                         return 0xCB0;
                     // ?.?? [unused]
                     default:
@@ -194,6 +196,9 @@ namespace Skyrim_Module_Loader
                     // 9.00
                     case 8:
                         return 0x51E0;
+                    // 11.00
+                    case 9:
+                        return 0x51B0;
                     // ?.?? [unused]
                     default:
                         return 0;
