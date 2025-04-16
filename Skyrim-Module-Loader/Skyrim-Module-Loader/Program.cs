@@ -12,7 +12,7 @@ namespace Skyrim_Module_Loader
     {
         static Int32 GetTargetVersion()
         {
-            Console.WriteLine("Waht is the Patch you want to target?");
+            Console.WriteLine("what is the Patch you want to target?");
             Console.WriteLine("00: 1.00");
             Console.WriteLine("01: 1.01");
             Console.WriteLine("02: 1.02");
@@ -103,20 +103,45 @@ namespace Skyrim_Module_Loader
             }
         }
 
+        static byte[] GetModulePath()
+        {
+            var GamePackage = System.Text.Encoding.UTF8.GetBytes("/app0/prx.prx");
+            var ConsoleHDD = System.Text.Encoding.UTF8.GetBytes("/data/prx.prx");
+
+            if (GamePackage.Length != 13)
+                throw new Exception("Invalid Encoding Used");
+            
+            //
+            Console.WriteLine("Where do you want the prx loaded from?\n0: Game Package\n1:Console HDD(/data/)");
+            
+            //
+            int v = Int32.Parse(Console.ReadLine());
+            switch (v)
+            {
+                case 0:
+                    return GamePackage;
+                case 1:
+                    return ConsoleHDD;
+                default:
+                    return GamePackage;
+            }
+        }
+        
         static Int32 ProcessDifference(int targetVersion)
         {
-            Console.WriteLine("What Firmware Will this binary be ran on?");
+            Console.WriteLine("What PS Firmware Will this binary be ran on?");
             Console.WriteLine("-1: User Specified(Hex)");
-            Console.WriteLine("0: 1.76");
-            Console.WriteLine("1: 3.55");
-            Console.WriteLine("2: 4.05");
-            Console.WriteLine("3: 4.55");
-            Console.WriteLine("4: 5.05");
-            Console.WriteLine("5: 6.72");
-            Console.WriteLine("6: 7.02");
-            Console.WriteLine("7: 7.55");
-            Console.WriteLine("8: 9.00");
-            Console.WriteLine("9: 11.00");
+            Console.WriteLine("0: PS4 1.76");
+            Console.WriteLine("1: PS4 3.55");
+            Console.WriteLine("2: PS4 4.05");
+            Console.WriteLine("3: PS4 4.55");
+            Console.WriteLine("4: PS4 5.05");
+            Console.WriteLine("5: PS4 6.72");
+            Console.WriteLine("6: PS4 7.02");
+            Console.WriteLine("7: PS4 7.55");
+            Console.WriteLine("8: PS4 9.00");
+            Console.WriteLine("9: PS4 11.00");
+            Console.WriteLine("10: PS5 6.02");
 
             // 1.00 -> 1.19, after 1.19 the function used for the patch got removed, therefore we need to use a different function.
             if (targetVersion <= 19)
@@ -155,6 +180,8 @@ namespace Skyrim_Module_Loader
                     case 8:
                     case 9:
                         return 0xCB0;
+                    case 10:
+                        return 0xCF0;
                     // ?.?? [unused]
                     default:
                         return 0;
@@ -199,6 +226,8 @@ namespace Skyrim_Module_Loader
                     // 11.00
                     case 9:
                         return 0x51B0;
+                    case 10:
+                        return 0x8CF0; // PS5, 6.02
                     // ?.?? [unused]
                     default:
                         return 0;
@@ -206,12 +235,12 @@ namespace Skyrim_Module_Loader
             }
         }
 
-        static void PatchBinary(int targetVersion, BinaryWriter bw, byte[] dispbytes)
+        static void PatchBinary(int targetVersion, byte[] modulePath, BinaryWriter bw, byte[] dispbytes)
         {
             switch (targetVersion)
             {
                 case 00:
-                    Patches.PatchBinary100(bw, dispbytes);
+                    Patches.PatchBinary100(bw, modulePath, dispbytes);
                     break;
                 case 01:
                     throw new NotImplementedException("Target Version 1.01 not Implemented");
@@ -220,68 +249,68 @@ namespace Skyrim_Module_Loader
                 case 03:
                     throw new NotImplementedException("Target Version 1.03 not Implemented");
                 case 04:
-                    Patches.PatchBinary104(bw, dispbytes);
+                    Patches.PatchBinary104(bw, modulePath, dispbytes);
                     break;
                 case 05:
-                    Patches.PatchBinary105(bw, dispbytes);
+                    Patches.PatchBinary105(bw, modulePath, dispbytes);
                     break;
                 case 06:
-                    Patches.PatchBinary106(bw, dispbytes);
+                    Patches.PatchBinary106(bw, modulePath, dispbytes);
                     break;
                 case 07:
                     throw new NotImplementedException("Target Version 1.07 not Implemented");
                 case 08:
-                    Patches.PatchBinary108(bw, dispbytes);
+                    Patches.PatchBinary108(bw, modulePath, dispbytes);
                     break;
                 case 09:
-                    Patches.PatchBinary109(bw, dispbytes);
+                    Patches.PatchBinary109(bw, modulePath, dispbytes);
                     break;
                 case 10:
-                    Patches.PatchBinary110(bw, dispbytes);
+                    Patches.PatchBinary110(bw, modulePath, dispbytes);
                     break;
                 case 11:
-                    Patches.PatchBinary111(bw, dispbytes);
+                    Patches.PatchBinary111(bw, modulePath, dispbytes);
                     break;
                 case 12:
-                    Patches.PatchBinary112(bw, dispbytes);
+                    Patches.PatchBinary112(bw, modulePath, dispbytes);
                     break;
                 case 13:
-                    Patches.PatchBinary113(bw, dispbytes);
+                    Patches.PatchBinary113(bw, modulePath, dispbytes);
                     break;
                 case 14:
-                    Patches.PatchBinary114(bw, dispbytes);
+                    Patches.PatchBinary114(bw, modulePath, dispbytes);
                     break;
                 case 15:
                     throw new NotImplementedException("Target Version 1.15 not Implemented");
                 case 16:
-                    Patches.PatchBinary116_117_119(bw, dispbytes);
+                    Patches.PatchBinary116_117_119(bw, modulePath, dispbytes);
                     break;
                 case 17:
-                    Patches.PatchBinary116_117_119(bw, dispbytes);
+                    Patches.PatchBinary116_117_119(bw, modulePath, dispbytes);
                     break;
                 case 18:
                     throw new NotImplementedException("Target Version 1.18 not Implemented");
                 case 19:
-                    Patches.PatchBinary116_117_119(bw, dispbytes);
+                    Patches.PatchBinary116_117_119(bw, modulePath, dispbytes);
                     break;
                 case 20:
-                    Patches.PatchBinary120(bw, dispbytes);
+                    Patches.PatchBinary120(bw, modulePath, dispbytes);
                     break;
                 case 21:
-                    Patches.PatchBinary121(bw, dispbytes);
+                    Patches.PatchBinary121(bw, modulePath, dispbytes);
                     break;
                 case 22:
-                    Patches.PatchBinary122(bw, dispbytes);
+                    Patches.PatchBinary122(bw, modulePath, dispbytes);
                     break;
                 case 23:
                     throw new NotImplementedException("Target Version 1.23 not Implemented");
                 case 24:
                     throw new NotImplementedException("Target Version 1.24 not Implemented");
                 case 25:
-                    Patches.PatchBinary125(bw, dispbytes);
+                    Patches.PatchBinary125(bw, modulePath, dispbytes);
                     break;
                 case 26:
-                    Patches.PatchBinary126(bw, dispbytes);
+                    Patches.PatchBinary126(bw, modulePath, dispbytes);
                     break;
                 default:
                     break;
@@ -308,6 +337,7 @@ namespace Skyrim_Module_Loader
             var targertVersion = GetTargetVersion();
             var disp = ProcessDifference(targertVersion);
             var dispbytes = BitConverter.GetBytes(disp);
+            var path = GetModulePath();
 
             //
             using (BinaryReader br = new BinaryReader(File.Open(args[0], FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)))
@@ -322,7 +352,7 @@ namespace Skyrim_Module_Loader
 #endif
                 using (BinaryWriter bw = new BinaryWriter(File.Open(args[0], FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)))
                 {
-                    PatchBinary(targertVersion, bw, dispbytes);
+                    PatchBinary(targertVersion, path, bw, dispbytes);
                 }
             }
 

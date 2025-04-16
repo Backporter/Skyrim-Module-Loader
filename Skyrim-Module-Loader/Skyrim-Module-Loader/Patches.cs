@@ -14,7 +14,7 @@ namespace Skyrim_Module_Loader
         // 0xDEADBEEF + 0x4000
 
         // 1.00
-        public static void PatchBinary100(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary100(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -96,12 +96,8 @@ namespace Skyrim_Module_Loader
                 // call    sub_DFFBE0
                 0xE8, 0x63, 0x11, 0x79, 0x00,
             };
-            
-            byte[] _path = new byte[]    
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+
+            byte[] _path = modulePath;
 
             bw.Seek(0xDFFBE0 + 0x4000, SeekOrigin.Begin);
 
@@ -133,7 +129,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.04
-        public static void PatchBinary104(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary104(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -216,11 +212,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0xD3, 0x51, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE14DD0 + 0x4000, SeekOrigin.Begin);
 
@@ -252,7 +244,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.05
-        public static void PatchBinary105(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary105(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -335,11 +327,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0xD3, 0x56, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE157B0 + 0x4000, SeekOrigin.Begin);
 
@@ -371,7 +359,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.06
-        public static void PatchBinary106(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary106(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -454,11 +442,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0xD3, 0x54, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE19B00 + 0x4000, SeekOrigin.Begin);
 
@@ -490,7 +474,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.08
-        public static void PatchBinary108(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary108(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -573,11 +557,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0xD3, 0xF4, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE40B70 + 0x4000, SeekOrigin.Begin);
 
@@ -609,7 +589,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.09
-        public static void PatchBinary109(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary109(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -694,11 +674,7 @@ namespace Skyrim_Module_Loader
             };
 
 
-            byte[] _path = new byte[]
-            {
-                        // /app0/prx.prx
-                        0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             //
             bw.Seek(0xE40B90 + 0x4000, SeekOrigin.Begin);
@@ -739,7 +715,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.10
-        public static void PatchBinary110(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary110(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -822,11 +798,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x13, 0xFD, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE41AF0 + 0x4000, SeekOrigin.Begin);
 
@@ -858,7 +830,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.11
-        public static void PatchBinary111(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary111(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -941,11 +913,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0xFC, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE415F0 + 0x4000, SeekOrigin.Begin);
 
@@ -977,7 +945,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.12
-        public static void PatchBinary112(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary112(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
 {
@@ -1060,11 +1028,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0xFC, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE415F0 + 0x4000, SeekOrigin.Begin);
 
@@ -1096,7 +1060,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.13
-        public static void PatchBinary113(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary113(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1179,11 +1143,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0xFC, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE415F0 + 0x4000, SeekOrigin.Begin);
 
@@ -1215,7 +1175,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.14
-        public static void PatchBinary114(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary114(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1298,11 +1258,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0xFC, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE415F0 + 0x4000, SeekOrigin.Begin);
 
@@ -1334,7 +1290,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.16/1.17/1.19
-        public static void PatchBinary116_117_119(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary116_117_119(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1417,11 +1373,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0xFC, 0x79, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE415F0 + 0x4000, SeekOrigin.Begin);
 
@@ -1455,7 +1407,7 @@ namespace Skyrim_Module_Loader
         // <! past this version sceKernelGetModuleList no longer exists inside the eboot so we need to use somthing else. !>
 
         // 1.20
-        public static void PatchBinary120(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary120(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             // sub_E8C900
             byte[] _asm1 = new byte[]
@@ -1539,11 +1491,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x03, 0x3B, 0x7A, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE8C900 + 0x4000, SeekOrigin.Begin);
 
@@ -1575,7 +1523,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.21
-        public static void PatchBinary121(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary121(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1658,11 +1606,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x83, 0x3B, 0x7A, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE8D020 + 0x4000, SeekOrigin.Begin);
 
@@ -1694,7 +1638,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.22
-        public static void PatchBinary122(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary122(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1777,11 +1721,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0xB3, 0x3A, 0x7A, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE8E830 + 0x4000, SeekOrigin.Begin);
 
@@ -1813,7 +1753,7 @@ namespace Skyrim_Module_Loader
         }
         
         // 1.25
-        public static void PatchBinary125(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary125(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -1896,11 +1836,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x73, 0x4A, 0x7A, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE9FC90 + 0x4000, SeekOrigin.Begin);
 
@@ -1932,7 +1868,7 @@ namespace Skyrim_Module_Loader
         }
 
         // 1.26
-        public static void PatchBinary126(BinaryWriter bw, byte[] dispbytes)
+        public static void PatchBinary126(BinaryWriter bw, byte[] modulePath, byte[] dispbytes)
         {
             byte[] _asm1 = new byte[]
             {
@@ -2015,11 +1951,7 @@ namespace Skyrim_Module_Loader
                 0xE8, 0x73, 0x4A, 0x7A, 0x00,
             };
 
-            byte[] _path = new byte[]
-            {
-                // /app0/prx.prx
-                0x2F, 0x61, 0x70, 0x70, 0x30, 0x2F, 0x70, 0x72, 0x78, 0x2E, 0x70, 0x72, 0x78,
-            };
+            byte[] _path = modulePath;
 
             bw.Seek(0xE9FB90 + 0x4000, SeekOrigin.Begin);
 
